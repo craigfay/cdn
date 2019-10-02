@@ -1,0 +1,19 @@
+<style>
+  .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+</style>
+
+<div class="content">
+
+</div>
+
+<script>
+  async function fetchFiles() {
+    const response = await fetch('/api/uploads');
+    console.log(await response.json());
+  }
+  fetchFiles();
+</script>
