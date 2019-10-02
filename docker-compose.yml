@@ -1,0 +1,34 @@
+# Run the application in development mode
+version: '3'
+services:
+  nodejs:
+    image: node:12
+    volumes:
+      - "./app:/app"
+      - "./app/public/uploads:/uploads"
+    environment:
+      PORT: 8080
+      ASSETS_DIR: "/uploads"
+    networks:
+      - app-network
+    working_dir: "/app"
+    command: npm run start
+
+  nginx:
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    volumes:
+      - ./app/public:/var/www/html
+      - ./volumes/nginx/development:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    depends_on:
+      - nodejs
+    networks:
+      - app-network
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+networks:
+  app-network:
+    # opens all ports between containers on the same bridge network, 
+    driver: bridge 

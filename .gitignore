@@ -1,0 +1,13 @@
+# NPM Packages
+node_modules
+
+# File Uploads
+app/public/uploads
+
+# MacOS Artifact
+.DS_Store
+
+# SSL
+volumes/certbot/
+volumes/certbot/
+volumes/nginx/generated.conf
