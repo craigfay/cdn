@@ -23,7 +23,7 @@ function matches(url:string, pattern:string): boolean {
 // Send a request to its corresponding handler function
 function requestRouter(req, res) {
   const { url, method } = req;
-  if (matches(url, '/upload') && method == 'POST') {
+  if (matches(url, '/api/upload') && method == 'POST') {
     return handleFileUpload(req, res);
   }
   else {
