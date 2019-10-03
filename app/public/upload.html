@@ -1,6 +1,56 @@
 <!-- Form for uploading static assets -->
-<form action="/api/uploads" enctype="multipart/form-data" method="POST">
-  <input type="text" name="title"><br>
-  <input type="file" name="upload" multiple="multiple"><br>
-  <input type="submit" value="Upload">
-</form>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+<style>
+  * {
+    font-family: Roboto;
+  }
+  .page {
+    justify-content: center;
+    display: flex;
+  }
+  .content {
+    padding: 24px;
+    border: 1px solid #dfdfdf;
+    margin: 100px;
+    border-radius: 6px;
+  }
+  h1 {
+    margin: 0 0 12px 0;
+    color: #666666;
+  }
+  form {
+    margin: 0;
+  }
+  label {
+    font-size: 12px;
+  }
+  input {
+    width: 100%;
+    height: 36px;
+    margin: 0 0 12px 0;
+    border-radius: 6px;
+  }
+  input[type="text"] {
+    border: 1px solid #dfdfdf;
+    padding: 0 0 0 12px;
+  }
+  input[type="submit"] {
+    color: white;
+    background-color: #606ec6;
+    margin: 0;
+  }
+</style>
+
+
+<div class="page">
+  <div class="content">
+    <h1>New Upload</h1>
+    <form action="/api/uploads" enctype="multipart/form-data" method="POST">
+      <input type="text" name="title" placeholder="filename">
+      <input type="file" name="upload" multiple="multiple">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+</div>
