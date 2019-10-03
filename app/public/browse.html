@@ -102,7 +102,8 @@
 
       // Copy filenames to the clipboard when title is clicked
       info.addEventListener('click', function(event) {
-        document.querySelector('#copy-area').value = title.innerText;
+        const address = window.location.origin + '/uploads/' + title.innerText;
+        document.querySelector('#copy-area').value = address;
         document.querySelector('#copy-area').select();
         document.execCommand('copy');
       });
