@@ -1,19 +1,84 @@
+
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
 <style>
+  * {
+    font-family: Roboto;
+  }
   .content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+  .preview {
+    border: 1px solid #dfdfdf;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  .preview:hover {
+    cursor: pointer;
+  }
+  .preview .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+    padding: 12px;
+  }
+  .preview .info:hover {
+    background-color: #f9f9f9;
+  }
+  .preview .icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0;
+  }
+  .preview .title {
+    font-size: 12px;
+  }
+  .preview img {
+    width: 150px;
+    height: 100px;
+    margin: 15px;
+    object-fit: scale-down;
   }
 </style>
 
-<div class="content">
-
-</div>
+<div class="content"></div>
 
 <script>
   async function fetchFiles() {
     const response = await fetch('/api/uploads');
-    console.log(await response.json());
+    const filenames = await response.json();
+
+    // Render File Previews
+    filenames.forEach(file => {
+      const preview = document.createElement('div');
+      preview.classList.add('preview');
+
+      const info = document.createElement('div');
+      info.classList.add('info');
+
+      const icon = document.createElement('img');
+      icon.setAttribute('src', '/icons/light/file-media.svg');
+      icon.classList.add('icon');
+
+      const title = document.createElement('div');
+      title.classList.add('title');
+      title.innerText = file;
+
+      const img = document.createElement('img');
+      img.setAttribute('src', `/uploads/${file}`);
+
+      info.appendChild(icon);
+      info.appendChild(title);
+
+      preview.appendChild(img);
+      preview.appendChild(info);
+      document.querySelector('.content').appendChild(preview);
+    })
   }
   fetchFiles();
 </script>
