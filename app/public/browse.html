@@ -5,11 +5,15 @@
   * {
     font-family: Roboto;
   }
+  .page {
+    justify-content: center;
+    display: flex;
+  }
   .content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .preview {
     border: 1px solid #dfdfdf;
@@ -37,6 +41,11 @@
   }
   .preview .title {
     font-size: 12px;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    /* max-width: 100px; */
+    text-overflow: ellipsis;
   }
   .preview img {
     width: 150px;
@@ -46,7 +55,9 @@
   }
 </style>
 
-<div class="content"></div>
+<div class="page">
+  <div class="content"></div>
+</div>
 
 <script>
   async function fetchFiles() {
