@@ -9,6 +9,10 @@
     justify-content: center;
     display: flex;
   }
+  #copy-area {
+    position: absolute;
+    top: 1000px;
+  }
   .content {
     display: flex;
     flex-direction: row;
@@ -44,7 +48,6 @@
     width: 100px;
     overflow: hidden;
     white-space: nowrap;
-    /* max-width: 100px; */
     text-overflow: ellipsis;
   }
   .preview img {
@@ -55,6 +58,7 @@
   }
 </style>
 
+<input type="text" id="copy-area">
 <div class="page">
   <div class="content"></div>
 </div>
@@ -88,8 +92,17 @@
 
       preview.appendChild(img);
       preview.appendChild(info);
+
+      // Copy filenames to the clipboard
+      info.addEventListener('click', function(event) {
+        document.querySelector('#copy-area').value = title.innerText;
+        document.querySelector('#copy-area').select();
+        document.execCommand('copy');
+      });
+
       document.querySelector('.content').appendChild(preview);
     })
+
   }
   fetchFiles();
 </script>
