@@ -10,8 +10,8 @@
     display: flex;
   }
   #copy-area {
-    position: absolute;
     top: 1000px;
+    position: absolute;
   }
   .content {
     display: flex;
@@ -58,7 +58,9 @@
   }
 </style>
 
+<!-- Just for holding temporary string values -->
 <input type="text" id="copy-area">
+
 <div class="page">
   <div class="content"></div>
 </div>
@@ -73,6 +75,13 @@
       const preview = document.createElement('div');
       preview.classList.add('preview');
 
+      const link = document.createElement('a');
+      link.setAttribute('href', `/uploads/${file}`);
+      link.setAttribute('target', 'blank');
+
+      const img = document.createElement('img');
+      img.setAttribute('src', `/uploads/${file}`);
+
       const info = document.createElement('div');
       info.classList.add('info');
 
@@ -84,16 +93,13 @@
       title.classList.add('title');
       title.innerText = file;
 
-      const img = document.createElement('img');
-      img.setAttribute('src', `/uploads/${file}`);
-
+      link.appendChild(img);
       info.appendChild(icon);
       info.appendChild(title);
-
-      preview.appendChild(img);
+      preview.appendChild(link);
       preview.appendChild(info);
 
-      // Copy filenames to the clipboard
+      // Copy filenames to the clipboard when title is clicked
       info.addEventListener('click', function(event) {
         document.querySelector('#copy-area').value = title.innerText;
         document.querySelector('#copy-area').select();
