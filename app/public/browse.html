@@ -5,12 +5,8 @@
   * {
     font-family: Roboto;
   }
-  .page {
-    justify-content: center;
-    display: flex;
-  }
   #copy-area {
-    top: 1000px;
+    top: -1000px;
     position: absolute;
   }
   .content {
@@ -20,28 +16,38 @@
     justify-content: flex-start;
   }
   .preview {
-    border: 1px solid #dfdfdf;
-    margin: 10px;
+    margin: 12px;
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(0,0,0,.05);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
   .preview:hover {
     cursor: pointer;
+  }
+  .preview .thumbnail {
+    height: 150px;
+    width: 100%;
+    background-size: 100%;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
   }
   .preview .info {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-top: 1px solid #dfdfdf;
-    border-top: 1px solid #dfdfdf;
+    border: 1px solid #dfdfdf;
     padding: 12px;
+    box-sizing: border-box;
+    border-radius: 0 0 5px 5px; 
   }
   .preview .info:hover {
     background-color: #f9f9f9;
   }
   .preview .icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     margin: 0 10px 0 0;
   }
   .preview .title {
@@ -50,12 +56,6 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-  .preview img {
-    width: 150px;
-    height: 100px;
-    margin: 15px;
-    object-fit: scale-down;
   }
 </style>
 
@@ -76,6 +76,11 @@
       const preview = document.createElement('div');
       preview.classList.add('preview');
 
+      
+      const thumbnail = document.createElement('div');
+      thumbnail.classList.add('thumbnail');
+      thumbnail.style.backgroundImage = `url(/uploads/${encodeURI(file)})`;
+
       const link = document.createElement('a');
       link.setAttribute('href', `/uploads/${file}`);
       link.setAttribute('target', 'blank');
@@ -94,10 +99,9 @@
       title.classList.add('title');
       title.innerText = file;
 
-      link.appendChild(img);
       info.appendChild(icon);
       info.appendChild(title);
-      preview.appendChild(link);
+      preview.appendChild(thumbnail);
       preview.appendChild(info);
 
       // Copy filenames to the clipboard when title is clicked
