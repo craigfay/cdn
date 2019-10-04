@@ -29,7 +29,7 @@
   .preview .thumbnail {
     height: 150px;
     width: 100%;
-    background-size: 100%;
+    background-size: cover;
     box-sizing: border-box;
     border-radius: 5px 5px 0 0;
   }
@@ -106,7 +106,7 @@
 
       // Copy filenames to the clipboard when title is clicked
       info.addEventListener('click', function(event) {
-        const address = window.location.origin + '/uploads/' + title.innerText;
+        const address = window.location.origin + '/uploads/' + encodeURI(title.innerText);
         document.querySelector('#copy-area').value = address;
         document.querySelector('#copy-area').select();
         document.execCommand('copy');
