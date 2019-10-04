@@ -23,6 +23,10 @@
     align-items: center;
     flex-direction: column;
   }
+  .preview a {
+    width: 100%;
+    height: 100%;
+  }
   .preview:hover {
     cursor: pointer;
   }
@@ -101,7 +105,8 @@
 
       info.appendChild(icon);
       info.appendChild(title);
-      preview.appendChild(thumbnail);
+      preview.appendChild(link);
+      link.appendChild(thumbnail);
       preview.appendChild(info);
 
       // Copy filenames to the clipboard when title is clicked
