@@ -4,6 +4,9 @@ node_modules
 # File Uploads
 app/public/uploads
 
+# File Tags
+tags.json
+
 # MacOS Artifact
 .DS_Store
 

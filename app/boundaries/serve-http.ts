@@ -40,16 +40,16 @@ function requestRouter(req, res) {
 async function handleFileUpload(req, res) {
   const form = new formidable.IncomingForm();
   form.parse(req, async (err, field, files) => {
-      try {
-        // Move the oploaded file from a temp location to a permanent location
-        await copy(files.upload.path, `${ASSETS_DIR}/${field.title}`);
-        res.writeHead(200);
-        res.end('OK');
-      } catch (e) {
-        res.writeHead(400);
-        res.end('Bad Request')
-      }
-    })
+    try {
+      // Move the oploaded file from a temp location to a permanent location
+      await copy(files.upload.path, `${ASSETS_DIR}/${field.title}`);
+      res.writeHead(200);
+      res.end('OK');
+    } catch (e) {
+      res.writeHead(400);
+      res.end('Bad Request')
+    }
+  })
 }
 
 // Respond with a list of available files
