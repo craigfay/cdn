@@ -104,6 +104,23 @@
       padding: 1rem;
     }
   }
+
+  /* Desktop Size */
+  @media only screen and (min-width: 1300px) {
+    * {
+      font-size: 14px;
+    }
+    .preview {
+      width: calc(12.5% - 2rem);
+      margin: .5rem;
+    }
+    .preview .thumbnail {
+      height: calc(12.5vw - 3rem);
+    }
+    .preview .info {
+      padding: 1rem;
+    }
+  }
 </style>
 
 <!-- Just for holding temporary string values -->
@@ -114,6 +131,7 @@
 </div>
 
 <script>
+  console.log(window.innerWidth)
   function filetype(filename) {
     const segments = filename.toLowerCase().split('.');
     return segments[segments.length - 1];
@@ -185,7 +203,6 @@
 
       document.querySelector('.content').appendChild(preview);
     })
-
   }
   fetchFiles();
 </script>
