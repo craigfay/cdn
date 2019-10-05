@@ -23,7 +23,6 @@
   }
   .preview {
     width: 100%;
-    /* width: calc(100% - 2rem); */
     margin-bottom: 2rem;
     border-radius: 1rem; 
     box-shadow: 0 0 1rem .5rem rgba(0,0,0,.1);
@@ -41,6 +40,7 @@
   .preview .thumbnail {
     height: 80vw;
     background-size: cover;
+    background-color: #f9f9f9;
     border-radius: .5rem .5rem 0 0;
   }
   .preview .info {
@@ -77,6 +77,7 @@
       flex-direction: row;
       padding: 1rem;
       box-sizing: border-box;
+      justify-content: flex-start;
     }
     .preview {
       width: calc(50% - 2rem);
@@ -113,6 +114,11 @@
 </div>
 
 <script>
+  function filetype(filename) {
+    const segments = filename.toLowerCase().split('.');
+    return segments[segments.length - 1];
+  }
+
   async function fetchFiles() {
     const response = await fetch('/api/uploads');
     const filenames = await response.json();
@@ -125,14 +131,26 @@
       
       const thumbnail = document.createElement('div');
       thumbnail.classList.add('thumbnail');
-      thumbnail.style.backgroundImage = `url(/uploads/${encodeURI(file)})`;
+
+      // Set thumnail image based on filetype
+      const extension = filetype(file);
+      if (extension == 'jpg' || extension == 'jpeg' || extension == 'png') {
+        thumbnail.style.backgroundImage = `url(/uploads/${encodeURI(file)})`;
+      } else if (extension == 'js') {
+        thumbnail.style.backgroundImage = 'url(/icons/js.png)';
+      } else if (extension == 'css') {
+        thumbnail.style.backgroundImage = 'url(/icons/css.png)';
+      } else if (extension == 'html') {
+        thumbnail.style.backgroundImage = 'url(/icons/html.png)';
+      } else if (extension == 'json') {
+        thumbnail.style.backgroundImage = 'url(/icons/json.png)';
+      } else {
+        thumbnail.style.backgroundImage = 'url(/icons/unknown.png)';
+      }
 
       const link = document.createElement('a');
       link.setAttribute('href', `/uploads/${file}`);
       link.setAttribute('target', 'blank');
-
-      const img = document.createElement('img');
-      img.setAttribute('src', `/uploads/${file}`);
 
       const info = document.createElement('div');
       info.classList.add('info');
