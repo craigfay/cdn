@@ -156,8 +156,14 @@
       info.classList.add('info');
 
       const icon = document.createElement('img');
-      icon.setAttribute('src', '/icons/light/file-media.svg');
       icon.classList.add('icon');
+      if (extension == 'jpg' || extension == 'jpeg' || extension == 'png') {
+        icon.setAttribute('src', '/icons/file-media.svg');
+      } else if (extension == 'js' || extension == 'html' || extension == 'css') {
+        icon.setAttribute('src', '/icons/file-code.svg');
+      } else {
+        icon.setAttribute('src', '/icons/file.svg');
+      }
 
       const title = document.createElement('div');
       title.classList.add('title');
