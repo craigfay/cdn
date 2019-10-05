@@ -23,6 +23,7 @@
   }
   .preview {
     width: 100%;
+    /* width: calc(100% - 2rem); */
     margin-bottom: 2rem;
     border-radius: 1rem; 
     box-shadow: 0 0 1rem .5rem rgba(0,0,0,.1);
@@ -65,6 +66,42 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     box-sizing: border-box;
+  }
+
+  /* Most Mobile Devices */
+  @media (min-width: 980px) {
+    * {
+      font-size: 24px;
+    }
+    .content {
+      flex-direction: row;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .preview {
+      width: calc(50% - 2rem);
+      margin: 1rem;
+    }
+    .preview .thumbnail {
+      height: calc(50vw - 3rem);
+    }
+  }
+
+  /* IPad Pro Size */
+  @media only screen and (min-width: 1024px) {
+    * {
+      font-size: 18px;
+    }
+    .preview {
+      width: calc(25% - 2rem);
+      margin: 1rem;
+    }
+    .preview .thumbnail {
+      height: calc(25vw - 3rem);
+    }
+    .preview .info {
+      padding: 1rem;
+    }
   }
 </style>
 
