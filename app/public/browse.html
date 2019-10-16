@@ -1,6 +1,19 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
+<script>
+  // Respond to dropped files
+  function fileDropHandler(e) {
+    console.log('File Dropped');
+    e.preventDefault();
+  }
+
+  // Prevent default file drag behavior
+  function overrideFileDrag(e) {
+    e.preventDefault();
+  }
+</script>
+
 <style>
   * {
     font-family: Roboto;
@@ -150,7 +163,10 @@
 
 <div class="page">
   <div class="content">
-    <div class="new">
+    <div
+      class="new"
+      ondrop="fileDropHandler(event)"
+      ondragover="overrideFileDrag(event)">
       <div class="thumbnail"></div>
       <div class="info">
         <div class="title">New File</div>
